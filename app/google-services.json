@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "12142876315",
+    "project_id": "pronoteapp-34049",
+    "storage_bucket": "pronoteapp-34049.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:12142876315:android:9f4ea78260729e62ed583e",
+        "android_client_info": {
+          "package_name": "com.mtech.note"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD4EZ0c-F2zt7et8xwae4Q33QrjZ2nBYFA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
