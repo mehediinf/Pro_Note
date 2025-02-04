@@ -40,8 +40,6 @@
         android:layout_height="match_parent"
         android:layout_below="@id/title_bar_layout"
         android:id="@+id/recyler_view"/>
-
-
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
