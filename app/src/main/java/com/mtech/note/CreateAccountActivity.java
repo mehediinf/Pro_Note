@@ -9,6 +9,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -56,32 +57,32 @@ public class CreateAccountActivity extends AppCompatActivity {
 
     }
 
-    void createAccountInFirebase(String email,String password){
+    void createAccountInFirebase(String email, String password) {
         changeInProgress(true);
 
         FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
-        firebaseAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(CreateAccountActivity.this,
-                new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        changeInProgress(false);
-                        if(task.isSuccessful()){
-                            //creating acc is done
-                            Utility.showToast(CreateAccountActivity.this,"Successfully create account,Check email to verify");
-                            firebaseAuth.getCurrentUser().sendEmailVerification();
-                            firebaseAuth.signOut();
-                            finish();
-                        }else{
-                            //failure
-                            Utility.showToast(CreateAccountActivity.this,task.getException().getLocalizedMessage());
-                        }
+        firebaseAuth.createUserWithEmailAndPassword(email, password)
+                .addOnCompleteListener(CreateAccountActivity.this, task -> {
+                    changeInProgress(false);
+                    if (task.isSuccessful()) {
+                        firebaseAuth.getCurrentUser().sendEmailVerification();
+
+                        // ✅ AlertDialog দেখানো হচ্ছে
+                        new AlertDialog.Builder(CreateAccountActivity.this)
+                                .setTitle("Email Verification Required")
+                                .setMessage("Please verify your email before logging in. A verification link has been sent to your email.")
+                                .setPositiveButton("OK", (dialog, which) -> {
+                                    firebaseAuth.signOut(); // ✅ সাইন আউট করা হচ্ছে
+                                    finish(); // ✅ Activity বন্ধ করা হচ্ছে
+                                })
+                                .setCancelable(false) // ইউজার ব্যাক বাটন চেপে Dialog বন্ধ করতে পারবে না
+                                .show();
+                    } else {
+                        Utility.showToast(CreateAccountActivity.this, task.getException().getLocalizedMessage());
                     }
-                }
-        );
-
-
-
+                });
     }
+
 
     void changeInProgress(boolean inProgress){
         if(inProgress){
