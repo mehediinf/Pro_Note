@@ -421,7 +421,7 @@ public class NoteDetailsActivity extends AppCompatActivity {
     private void saveNoteOfflineFirst(Note note) {
         if (localId == null || localId.isEmpty()) localId = UUID.randomUUID().toString();
         boolean online = Utility.isOnline(this);
-        boolean pending = !online;
+        boolean pending = true;
 
         LocalNoteEntity entity = new LocalNoteEntity(
                 localId,
@@ -465,7 +465,7 @@ public class NoteDetailsActivity extends AppCompatActivity {
                 Tasks.await(documentReference.set(noteForFirestore));
                 // Update local DB so next time we open by docId we find the note (with image localUri)
                 if (localId != null && !localId.isEmpty()) {
-                    AppDatabase.getInstance(getApplicationContext()).localNoteDao().setFirestoreDocId(localId, finalDocId);
+                    AppDatabase.getInstance(getApplicationContext()).localNoteDao().markSynced(localId, finalDocId);
                 }
                 runOnUiThread(() -> {
                     Utility.showToast(NoteDetailsActivity.this, "Note saved");
@@ -474,7 +474,11 @@ public class NoteDetailsActivity extends AppCompatActivity {
                     finish();
                 });
             } catch (Exception e) {
-                runOnUiThread(() -> Utility.showToast(NoteDetailsActivity.this, "Failed while saving note: " + e.getMessage()));
+                runOnUiThread(() -> {
+                    Utility.showToast(NoteDetailsActivity.this, "Saved offline. Will sync when online.");
+                    SyncScheduler.enqueue(getApplicationContext());
+                    finish();
+                });
             }
         }).start();
     }

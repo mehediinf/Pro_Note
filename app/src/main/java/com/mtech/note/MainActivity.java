@@ -147,11 +147,8 @@ public class MainActivity extends AppCompatActivity {
                 List<NoteListItem> items = new ArrayList<>();
                 if (pending != null) {
                     for (LocalNoteEntity e : pending) {
-                        // Only purely local notes (no firestoreDocId yet)
-                        if (e.firestoreDocId == null || e.firestoreDocId.isEmpty()) {
-                            items.add(NoteListItem.offline(
-                                    e.localId, e.title, e.content, e.timestampMs));
-                        }
+                        items.add(NoteListItem.offline(
+                                e.localId, e.title, e.content, e.timestampMs));
                     }
                 }
                 offlineNotes.clear();
@@ -180,7 +177,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         mixedAdapter.submitList(new ArrayList<>(merged));
-        updateEmptyState();
+        updateEmptyState(merged);
 
         // Badge
         int pendingCount = offlineNotes.size();
@@ -196,8 +193,8 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void updateEmptyState() {
-        boolean empty = mixedAdapter == null || mixedAdapter.getItemCount() == 0;
+    private void updateEmptyState(List<NoteListItem> merged) {
+        boolean empty = merged == null || merged.isEmpty();
         emptyStateText.setVisibility(empty ? View.VISIBLE : View.GONE);
     }
 
