@@ -34,7 +34,7 @@ A simple Android note application with online/offline sync support, built in Jav
 - Android Studio
 - Android SDK API Level 35
 - Java 17
-- `google-services.json` configured in `app/`
+- `google-services.json` configured in `app/` (keep this file local only)
 
 ## Setup
 
