@@ -13,3 +13,10 @@
 .externalNativeBuild
 .cxx
 local.properties
+
+# Firebase and local secret config
+/google-services.json
+/app/google-services.json
+*.jks
+*.keystore
+.env
