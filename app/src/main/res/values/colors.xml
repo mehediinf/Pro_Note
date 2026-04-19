@@ -4,5 +4,31 @@
     <color name="teal_200">#FF03DAC5</color>
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
+
+    <!-- Brand accent (deep teal/green) -->
+    <color name="accent">#1D9E75</color>
+    <color name="accent_light">#E1F5EE</color>
+    <color name="accent_dark">#0F6E56</color>
+
+    <!-- Backgrounds -->
+    <color name="bg_main">#F7F6F2</color>
+    <color name="bg_surface">#FFFFFF</color>
+    <color name="bg_chip">#F0F0EC</color>
+
+    <!-- Text -->
+    <color name="text_primary">#1A1A18</color>
+    <color name="text_secondary">#5F5E5A</color>
+    <color name="text_hint">#9E9D99</color>
+
+    <!-- UI -->
+    <color name="divider">#E8E7E2</color>
+    <color name="danger">#D85A30</color>
+    <color name="danger_light">#FAECE7</color>
+    <color name="white">#FFFFFF</color>
+
+    <!-- Pending sync badge -->
+    <color name="pending_bg">#FFF8E6</color>
+    <color name="pending_text">#A06800</color>
+    <color name="pending_border">#F0C040</color>
+
 </resources>

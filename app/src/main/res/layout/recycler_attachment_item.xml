@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="8dp"
+    app:cardBackgroundColor="@color/bg_surface"
+    app:cardCornerRadius="12dp"
+    app:cardElevation="0dp"
+    app:strokeWidth="1dp"
+    app:strokeColor="@color/divider">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:padding="12dp">
+
+        <!-- Type icon container -->
+        <FrameLayout
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@drawable/bg_attachment_icon"
+            android:layout_marginEnd="12dp">
+
+            <ImageView
+                android:id="@+id/attachment_icon"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_gravity="center"
+                tools:src="@drawable/image" />
+
+        </FrameLayout>
+
+        <!-- Text content -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/attachment_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="14sp"
+                android:textColor="@color/text_primary"
+                android:fontFamily="sans-serif-medium"
+                android:maxLines="1"
+                android:ellipsize="end"
+                tools:text="Image" />
+
+            <TextView
+                android:id="@+id/attachment_subtitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="12sp"
+                android:textColor="@color/text_secondary"
+                android:maxLines="2"
+                android:ellipsize="end"
+                android:layout_marginTop="2dp"
+                tools:text="file:///storage/image.jpg" />
+
+        </LinearLayout>
+
+        <!-- Tap hint (read mode) -->
+        <ImageView
+            android:id="@+id/attachment_open_hint"
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:src="@drawable/chevron_right"
+            app:tint="@color/text_hint"
+            android:layout_marginStart="8dp" />
+
+        <!-- Delete button (edit mode) -->
+        <ImageButton
+            android:id="@+id/attachment_delete"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:src="@drawable/delete_outline"
+            app:tint="@color/danger"
+            android:contentDescription="Delete attachment"
+            android:visibility="gone"
+            android:layout_marginStart="4dp" />
+
+    </LinearLayout>
+
+</com.google.android.material.card.MaterialCardView>
