@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">Pro Note</string>
+    <string name="hello">Hello.</string>
+    <string name="welcome_back">Welcome Back</string>
+    <string name="email_hint">Email Id</string>
+    <string name="password_hint">Password</string>
+    <string name="login">LogIn</string>
+    <string name="dont_have_account">Don\'t have an account? </string>
+    <string name="create_account">Create Account</string>
+    <string name="email_not_verified">Email not verified, Please verify your email.</string>
+    <string name="email_invalid">Email is invalid</string>
+    <string name="password_length_invalid">Password length is invalid</string>
 </resources>

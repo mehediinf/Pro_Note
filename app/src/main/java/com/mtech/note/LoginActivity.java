@@ -68,7 +68,7 @@ public class LoginActivity extends AppCompatActivity {
                         startActivity(new Intent(LoginActivity.this,MainActivity.class));
                         finish();
                     }else{
-                        Utility.showToast(LoginActivity.this,"Email not verified, Please verify your email.");
+                        Utility.showToast(LoginActivity.this,getString(R.string.email_not_verified));
                     }
 
                 }else{
@@ -93,11 +93,11 @@ public class LoginActivity extends AppCompatActivity {
         //validate the data that are input by user.
 
         if(!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
-            emailEditText.setError("Email is invalid");
+            emailEditText.setError(getString(R.string.email_invalid));
             return false;
         }
         if(password.length()<6){
-            passwordEditText.setError("Password length is invalid");
+            passwordEditText.setError(getString(R.string.password_length_invalid));
             return false;
         }
         return true;

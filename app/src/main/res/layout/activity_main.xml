@@ -1,55 +1,97 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/my_primary"
-    android:padding="16dp"
+    android:background="@color/bg_main"
     tools:context=".MainActivity">
 
-    <RelativeLayout
+    <!-- App Bar -->
+    <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/title_bar_layout">
-        <TextView
-            android:layout_width="wrap_content"
+        android:background="#CFD0CB"
+        app:elevation="0dp">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:paddingStart="4dp"
+            app:title="My Notes"
+            app:titleTextAppearance="@style/ToolbarTitleStyle"
+            app:contentInsetStart="16dp" />
+
+        <!-- Offline pending badge -->
+        <LinearLayout
+            android:id="@+id/offline_badge"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/page_title"
-            android:text="Notes"
-            android:textSize="32sp"
-            android:textColor="@color/white"
-            android:textStyle="bold"/>
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:background="@color/pending_bg"
+            android:paddingVertical="6dp"
+            android:visibility="gone">
 
-        <ImageButton
-            android:layout_width="36dp"
-            android:layout_height="36dp"
-            android:id="@+id/menu_btn"
-            android:src="@drawable/ic_baseline_menu_24"
-            android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true"
-            app:tint="@color/white"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            />
+            <TextView
+                android:id="@+id/offline_badge_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="⏳ Notes pending sync"
+                android:textSize="12sp"
+                android:textColor="@color/pending_text"
+                android:fontFamily="sans-serif-medium"
+                tools:ignore="HardcodedText" />
 
-    </RelativeLayout>
+        </LinearLayout>
 
+        <!-- Divider -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/divider" />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <!-- Note list -->
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/title_bar_layout"
-        android:id="@+id/recyler_view"/>
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        android:paddingTop="8dp"
+        android:clipToPadding="false"
+        android:overScrollMode="never" />
+
+    <!-- Empty state -->
+    <TextView
+        android:id="@+id/empty_state_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="No notes yet.\nTap + to add one."
+        android:textSize="15sp"
+        android:textColor="@color/text_hint"
+        android:gravity="center"
+        android:lineSpacingMultiplier="1.5"
+        android:visibility="gone"
+        tools:visibility="visible"
+        tools:ignore="HardcodedText" />
+
+    <!-- FAB -->
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/add_note_btn"
-        android:backgroundTint="@color/white"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:src="@drawable/ic_baseline_add_24"
-        />
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="20dp"
+        android:src="@drawable/add"
+        app:backgroundTint="@color/accent"
+        app:tint="@color/white"
+        app:elevation="4dp"
+        android:contentDescription="Add note" />
 
-
-
-</RelativeLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
